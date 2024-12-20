@@ -19,4 +19,9 @@ public class ProductCategory {
     private Long id;
 
     private String name;
+
+    // Getters and setters
+    public void setName(String name) {
+        this.name = name;
+    }
 }
