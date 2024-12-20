@@ -43,4 +43,8 @@ public class ProductDto {
     public void setStockLevel(Integer stockLevel) {
         this.stockLevel = stockLevel;
     }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
 }
