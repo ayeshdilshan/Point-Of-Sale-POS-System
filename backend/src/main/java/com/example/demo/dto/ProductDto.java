@@ -1,41 +1,46 @@
-package com.example.demo.entity;
+package com.example.demo.dto;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Entity
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Data
+public class ProductDto {
 
     private String name;
     private String description;
     private double unitPrice;
     private int stockLevel;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private ProductCategory category;
+    private Long categoryId;
 
     // Getters and setters
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
     public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    public Integer getStockLevel() {
+        return stockLevel;
     }
 
     public void setStockLevel(Integer stockLevel) {
         this.stockLevel = stockLevel;
     }
-
 }
