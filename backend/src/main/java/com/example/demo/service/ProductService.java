@@ -7,4 +7,6 @@ import org.springframework.http.ResponseEntity;
 public interface ProductService {
 
    ResponseEntity<CommonResponse> createProduct(ProductDto productDto);
+
+   ResponseEntity<CommonResponse> getAllProducts();
 }

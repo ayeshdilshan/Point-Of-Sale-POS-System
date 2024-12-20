@@ -29,7 +29,7 @@ public class Product {
     @JoinColumn(name = "category_id" , nullable = false)
     private ProductCategory category;
 
-    // Getters and setters
+    // setters
     public void setName(String name) {
         this.name = name;
     }
@@ -47,6 +47,31 @@ public class Product {
     }
     public void setCategory(ProductCategory category) {
         this.category = category;
+    }
+
+    // Getters
+
+    public Long getId() {
+        return id;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public Integer getStockLevel() {
+        return stockLevel;
+    }
+
+    public ProductCategory getCategory() {
+        return category;
     }
 
 }

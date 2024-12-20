@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductServiceImpl implements ProductService {
     @Autowired
@@ -35,5 +37,23 @@ public class ProductServiceImpl implements ProductService {
             response.setMessage(e.getMessage());
         }
         return ResponseEntity.ok().body(response);
+    }
+
+    @Override
+    public ResponseEntity<CommonResponse> getAllProducts() {
+        CommonResponse response = new CommonResponse();
+        try {
+            List<Product> products = productRepository.findAll();
+            System.out.println("Products: " + products); // Verify products
+            response.setData(products);
+            response.setStatus(HttpStatus.FOUND);
+            response.setMessage("Products Found Successfully");
+        } catch (Exception e) {
+            response.setData(null);
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+            response.setMessage("Products Not Found");
+        }
+        System.out.println("Response: " + response); // Verify response object
+        return ResponseEntity.ok(response);
     }
 }
