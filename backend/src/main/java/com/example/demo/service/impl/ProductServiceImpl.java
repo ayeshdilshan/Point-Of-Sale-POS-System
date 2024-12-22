@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             Product product = productMapper.dtoToModel(productDto);
             productRepository.save(product);
-            response.setData(product);
+            response.setData(productMapper.modelToDto(product));
             response.setStatus(HttpStatus.CREATED);
             response.setMessage("Product Saved Successfully");
         } catch (Exception e) {

@@ -1,17 +1,23 @@
 package com.example.demo.dto;
 
+import com.example.demo.entity.ProductCategory;
 import lombok.*;
 
 @Data
 public class ProductDto {
-
+    private Long productId;
     private String name;
     private String description;
     private double unitPrice;
     private int stockLevel;
     private Long categoryId;
+    private Long supplierId;
+    private ProductCategory category;
+
+
 
     // Getters and setters
+    public  void setId(Long id) {this.productId = id;}
     public String getName() {
         return name;
     }
@@ -46,5 +52,23 @@ public class ProductDto {
 
     public Long getCategoryId() {
         return categoryId;
+    }
+
+    public ProductCategory getProductCategory() {
+        return category;
+    }
+
+    public void setCategory (ProductCategory category) {
+        this.category = category;
+    }
+
+    public void setCategoryId(Long id ) {
+        this.categoryId = id;
+    }
+
+    public Long getSupplierId() {return supplierId;}
+
+    public void setSupplierId(Long id ) {
+        this.supplierId = id;
     }
 }

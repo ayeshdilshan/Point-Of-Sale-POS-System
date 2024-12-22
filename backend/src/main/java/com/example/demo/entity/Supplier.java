@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "Product_supplier")
 @Getter
@@ -60,4 +62,5 @@ public class Supplier {
     public void setContactNumber(Long contactNumber) {
         this.contactNumber = contactNumber;
     }
+
 }

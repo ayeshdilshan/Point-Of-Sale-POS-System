@@ -1,9 +1,6 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 public class Product {
@@ -25,9 +22,13 @@ public class Product {
     @Column(name = "stock_level")
     private int stockLevel;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id" , nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
     private ProductCategory category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplier_id", nullable = false)
+    private Supplier supplier;
 
     // Getters and setters
     public void setName(String name) {
@@ -49,4 +50,35 @@ public class Product {
         this.category = category;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public int getStockLevel() {
+        return stockLevel;
+    }
+
+    public ProductCategory getCategory() {
+        return category;
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
 }
