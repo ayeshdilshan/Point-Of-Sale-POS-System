@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Product {
 
@@ -28,6 +31,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id" , nullable = false)
     private ProductCategory category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderProducts> orderProducts = new ArrayList<>();
 
     // setters
     public void setName(String name) {
