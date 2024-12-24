@@ -5,6 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 public class Product {
 
@@ -20,7 +25,7 @@ public class Product {
     private String description;
 
     @Column(name = "unit_price")
-    private double unitPrice;
+    private BigDecimal unitPrice;
 
     @Column(name = "stock_level")
     private int stockLevel;
@@ -28,6 +33,10 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id" , nullable = false)
     private ProductCategory category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderProducts> orderProducts = new ArrayList<>();;
+
 
     // setters
     public void setName(String name) {
@@ -38,7 +47,7 @@ public class Product {
         this.description = description;
     }
 
-    public void setUnitPrice(Double unitPrice) {
+    public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
 
@@ -49,6 +58,17 @@ public class Product {
         this.category = category;
     }
 
+    public void setOrderProducts(List<OrderProducts> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setStockLevel(int stockLevel) {
+        this.stockLevel = stockLevel;
+    }
     // Getters
 
     public Long getId() {
@@ -62,7 +82,7 @@ public class Product {
         return description;
     }
 
-    public Double getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
@@ -74,4 +94,7 @@ public class Product {
         return category;
     }
 
+    public List<OrderProducts> getOrderProducts() {
+        return orderProducts;
+    }
 }
