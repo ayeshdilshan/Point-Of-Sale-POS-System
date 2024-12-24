@@ -2,13 +2,14 @@ package com.example.demo.dto;
 
 import com.example.demo.entity.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderRequestDto {
 
     private Integer customerId;
 
-    private List<ProductDto> products;
+    private List<OrderProductsRequestDto> orderProductsRequestDtoList = new ArrayList<>();
 
     public Integer getCustomerId() {
         return customerId;
@@ -18,11 +19,19 @@ public class OrderRequestDto {
         this.customerId = customerId;
     }
 
-    public List<ProductDto> getProducts() {
-        return products;
+    public List<OrderProductsRequestDto> getProducts() {
+        return orderProductsRequestDtoList;
     }
 
-    public void setProducts(List<ProductDto> products) {
-        this.products = products;
+    public void setProducts(List<OrderProductsRequestDto> orderProductsRequestDtoList) {
+        this.orderProductsRequestDtoList = orderProductsRequestDtoList;
+    }
+
+    public List<OrderProductsRequestDto> getOrderProductsRequestDtoList() {
+        return orderProductsRequestDtoList;
+    }
+
+    public void setOrderProductsRequestDtoList(List<OrderProductsRequestDto> orderProductsRequestDtoList) {
+        this.orderProductsRequestDtoList = orderProductsRequestDtoList;
     }
 }

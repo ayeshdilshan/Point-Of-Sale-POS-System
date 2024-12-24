@@ -2,12 +2,14 @@ package com.example.demo.dto;
 
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Data
 public class ProductDto {
 
     private String name;
     private String description;
-    private double unitPrice;
+    private BigDecimal unitPrice;
     private int stockLevel;
     private Long categoryId;
 
@@ -28,11 +30,11 @@ public class ProductDto {
         this.description = description;
     }
 
-    public Double getUnitPrice() {
+    public BigDecimal getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(Double unitPrice) {
+    public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
     }
 
