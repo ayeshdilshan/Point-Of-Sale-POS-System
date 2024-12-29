@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Product {
 
     @Id
@@ -35,7 +38,7 @@ public class Product {
     private ProductCategory category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderProducts> orderProducts = new ArrayList<>();;
+    private List<OrderProducts> orderProducts = new ArrayList<>();
 
 
     // setters
@@ -97,4 +100,5 @@ public class Product {
     public List<OrderProducts> getOrderProducts() {
         return orderProducts;
     }
+
 }
