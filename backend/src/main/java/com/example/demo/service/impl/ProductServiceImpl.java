@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ResponseEntity<CommonResponse> getAllProducts() {
         CommonResponse response = new CommonResponse();
-        List<ProductDto> productDtos =new ArrayList<>();
+        List<ProductDto> productDtos;
         try {
             List<Product> products = productRepository.findAll();
 
@@ -61,7 +61,28 @@ public class ProductServiceImpl implements ProductService {
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
             response.setMessage("Products Not Found");
         }
-        System.out.println("Response: " + response); // Verify response object
+        return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<CommonResponse> getProductsByCategoryName(String categoryName) {
+        CommonResponse response = new CommonResponse();
+        List<ProductDto> productDtos;
+        try {
+            List<Product> products = productRepository.findByCategoryName(categoryName);
+
+            productDtos = products.stream()
+                    .map(productMapper::modelToDto)
+                    .collect(Collectors.toList());
+
+            response.setData(productDtos);
+            response.setStatus(HttpStatus.FOUND);
+            response.setMessage("Products Found Successfully For Category : " + categoryName);
+        }catch (Exception e){
+            response.setData(null);
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+            response.setMessage("Products Not Found For category : " + categoryName);
+        }
         return ResponseEntity.ok(response);
     }
 }

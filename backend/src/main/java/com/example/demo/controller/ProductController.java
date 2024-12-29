@@ -31,8 +31,8 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/getByCategoryName")
-    public List<Product> getProductsByCategoryName(@PathVariable String categoryName) {
-        return productRepository.findByCategoryName(categoryName);
+    @GetMapping("/getByCategoryName/{categoryName}")
+    public ResponseEntity<CommonResponse> getProductsByCategoryName(@PathVariable("categoryName") String categoryName) {
+        return productService.getProductsByCategoryName(categoryName);
     }
 }

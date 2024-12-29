@@ -9,4 +9,6 @@ public interface ProductService {
    ResponseEntity<CommonResponse> createProduct(ProductDto productDto);
 
    ResponseEntity<CommonResponse> getAllProducts();
+
+   ResponseEntity<CommonResponse> getProductsByCategoryName(String categoryName);
 }
