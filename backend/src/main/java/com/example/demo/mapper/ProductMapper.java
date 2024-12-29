@@ -30,4 +30,19 @@ public class ProductMapper {
 
         return  model;
     }
+
+    public ProductDto modelToDto(Product model) {
+        ProductDto dto = new ProductDto();
+        if (model == null) {
+            return null;
+        }
+        dto.setId(model.getId());
+        dto.setName(model.getName());
+        dto.setDescription(model.getDescription());
+        dto.setStockLevel(model.getStockLevel());
+        dto.setUnitPrice(model.getUnitPrice());
+        dto.setCategoryName(model.getCategory().getName());
+
+        return  dto;
+    }
 }
