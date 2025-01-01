@@ -37,6 +37,9 @@ public class Product {
     @JoinColumn(name = "category_id" , nullable = false)
     private ProductCategory category;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "supplier_id", nullable = false)
+    private Supplier supplier;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderProducts> orderProducts = new ArrayList<>();
 
@@ -101,4 +104,11 @@ public class Product {
         return orderProducts;
     }
 
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
 }

@@ -7,4 +7,6 @@ import org.springframework.http.ResponseEntity;
 public interface SupplierService {
 
     ResponseEntity<CommonResponse> createSupplier(SupplierDto dto);
+
+    ResponseEntity<CommonResponse> getSuppliersByProductName(String productName);
 }
