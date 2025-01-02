@@ -6,15 +6,11 @@ import com.example.demo.entity.Product;
 import com.example.demo.mapper.ProductMapper;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.service.ProductService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -78,11 +74,33 @@ public class ProductServiceImpl implements ProductService {
             response.setData(productDtos);
             response.setStatus(HttpStatus.FOUND);
             response.setMessage("Products Found Successfully For Category : " + categoryName);
-        }catch (Exception e){
+        } catch (Exception e) {
             response.setData(null);
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
             response.setMessage("Products Not Found For category : " + categoryName);
         }
         return ResponseEntity.ok(response);
+    }
+
+    @Override
+    public ResponseEntity<CommonResponse> getTop5MostExpensiveProducts() {
+        CommonResponse response = new CommonResponse();
+        List<ProductDto> productDtos;
+        try {
+            List<Product> products = productRepository.findTop5ExpensiveProducts();
+            productDtos = products.stream()
+                    .map(productMapper::modelToDto)
+                    .collect(Collectors.toList());
+            response.setData(productDtos);
+            response.setStatus(HttpStatus.FOUND);
+            response.setMessage("Products Fetch Successfully");
+        } catch (Exception e) {
+            response.setData(null);
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+            response.setMessage("Products Fetch Failed : ");
+        }
+
+
+        return ResponseEntity.ok().body(response);
     }
 }

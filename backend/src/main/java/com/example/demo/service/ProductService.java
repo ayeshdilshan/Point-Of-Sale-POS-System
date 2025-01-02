@@ -11,4 +11,6 @@ public interface ProductService {
    ResponseEntity<CommonResponse> getAllProducts();
 
    ResponseEntity<CommonResponse> getProductsByCategoryName(String categoryName);
+
+   ResponseEntity<CommonResponse> getTop5MostExpensiveProducts();
 }

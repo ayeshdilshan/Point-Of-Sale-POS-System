@@ -35,4 +35,9 @@ public class ProductController {
     public ResponseEntity<CommonResponse> getProductsByCategoryName(@PathVariable("categoryName") String categoryName) {
         return productService.getProductsByCategoryName(categoryName);
     }
+
+    @GetMapping("/top-5-expensive-products")
+    public ResponseEntity<CommonResponse> getTop5MostExpensiveProducts () {
+        return productService.getTop5MostExpensiveProducts();
+    }
 }
